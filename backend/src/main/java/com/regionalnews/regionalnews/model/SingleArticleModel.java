@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,15 +21,9 @@ public class SingleArticleModel {
     @JsonProperty("description")
     private String description;
 
-    @JsonProperty("publishedAt")
     private String date;
-
     private String sourceName;
-
-    @JsonProperty("url")
     private String articleUrl;
-
-    @JsonProperty("urlToImage")
     private String imageUrl;
 
     @JsonProperty("source")
@@ -39,9 +34,11 @@ public class SingleArticleModel {
     public String getSourceName() {
         return sourceName;
     }
+
     public void setSourceName(String sourceName) {
         this.sourceName = sourceName;
     }
+
     public String getAuthor() {
         return author;
     }
@@ -66,27 +63,46 @@ public class SingleArticleModel {
         this.description = description;
     }
 
+    @JsonProperty(value = "date", access = Access.READ_ONLY)
     public String getDate() {
         return date;
     }
 
+    @JsonProperty(value = "publishedAt", access = JsonProperty.Access.WRITE_ONLY)
     public void setDate(String date) {
         this.date = date;
     }
 
+    @JsonProperty(value = "articleUrl", access = Access.READ_ONLY)
     public String getArticleUrl() {
         return articleUrl;
     }
 
+    @JsonProperty(value = "url", access = JsonProperty.Access.WRITE_ONLY)
     public void setArticleUrl(String articleUrl) {
         this.articleUrl = articleUrl;
     }
 
+    @JsonProperty(value = "imageUrl", access = Access.READ_ONLY)
     public String getImageUrl() {
         return imageUrl;
     }
 
+    @JsonProperty(value = "urlToImage", access = JsonProperty.Access.WRITE_ONLY)
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "SingleArticleModel{" +
+                "author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", date='" + date + '\'' +
+                ", sourceName='" + sourceName + '\'' +
+                ", articleUrl='" + articleUrl + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
     }
 }
