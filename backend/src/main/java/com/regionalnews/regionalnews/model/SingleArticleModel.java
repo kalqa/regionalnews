@@ -1,12 +1,11 @@
 package com.regionalnews.regionalnews.model;
 
+import java.util.Map;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
 
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -26,15 +25,23 @@ public class SingleArticleModel {
 
     private String sourceName;
 
-    @JsonIgnore
-    private SourceModel sourceModel;
-
     @JsonProperty("url")
     private String articleUrl;
 
     @JsonProperty("urlToImage")
     private String imageUrl;
 
+    @JsonProperty("source")
+    private void getSourceName(Map<String, String> brand) {
+        this.sourceName = brand.get("name");
+    }
+
+    public String getSourceName() {
+        return sourceName;
+    }
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
+    }
     public String getAuthor() {
         return author;
     }
@@ -81,28 +88,5 @@ public class SingleArticleModel {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    @JsonGetter("sourceName")
-    protected String getSourceName() {
-        if (sourceModel != null) {
-            sourceName = sourceModel.getSourceName();
-        }
-        return sourceName;
-    }
-
-    @JsonSetter("sourceName")
-    protected void setSourceName(String sourceName) {
-        if (sourceName != null) {
-            sourceModel = new SourceModel();
-            sourceModel.setSourceName(sourceName);
-        }
-        this.sourceName = sourceName;
-    }
-    public SourceModel getSourceModel() {
-        return sourceModel;
-    }
-    public void setSourceModel(SourceModel sourceModel) {
-        this.sourceModel = sourceModel;
     }
 }
