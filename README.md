@@ -15,16 +15,16 @@ Note: server must be deployed on 127.0.0.1:8080
 # REST API:
 GET /news/{country}/{category} example /news/us/technology
 
-{
-    country: string?,
-    category: string?,
-    articles: {
-    author: string,
-    title: string,
-    description: string,
-    date: string(yyyy-MM-dd),
-    sourceName: string,
-    articleUrl: string,
-    imageUrl: string
- }[]
+{<br />
+    country: string?, <br />
+    category: string?, <br />
+    articles: { <br />
+    author: string, <br />
+    title: string, <br />
+    description: string, <br />
+    date: string(yyyy-MM-dd), <br />
+    sourceName: string, <br />
+    articleUrl: string, <br />
+    imageUrl: string <br />
+ }[] <br />
 }
