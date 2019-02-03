@@ -14,3 +14,17 @@ Note: server must be deployed on 127.0.0.1:8080
 
 # REST API:
 GET /news/{country}/{category} example /news/us/technology
+Response : 
+{
+ country: string?,
+ category: string?,
+ articles: {
+ author: string,
+ title: string,
+ description: string,
+ date: string(yyyy-MM-dd),
+ sourceName: string,
+ articleUrl: string,
+ imageUrl: string
+ }[]
+}
