@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class RegionalNewsControllerTest {
-    
+
     private static final String HTTPS = "https";
     private static final String NEWSAPI_ORG = "newsapi.org";
     private static final String V_2_TOP_HEADLINES = "v2/top-headlines";
