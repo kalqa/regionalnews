@@ -11,7 +11,6 @@ public class RegionalnewsApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
-
 }
-

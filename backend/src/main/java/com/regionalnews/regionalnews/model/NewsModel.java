@@ -12,19 +12,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NewsModel {
 
-    @JsonProperty("articles")
-    private List<SingleArticleModel> singleArticleModels;
+    private static final String ARTICLES = "articles";
+
+    @JsonProperty(ARTICLES)
+    private List<ArticleModel> articleModels;
 
     private Optional<String> country = Optional.empty();
 
     private Optional<String> category = Optional.empty();
 
-    public List<SingleArticleModel> getSingleArticleModels() {
-        return singleArticleModels;
+    public List<ArticleModel> getArticleModels() {
+        return articleModels;
     }
-    public void setSingleArticleModels(List<SingleArticleModel> singleArticleModels) {
-        this.singleArticleModels = singleArticleModels;
+
+    public void setArticleModels(List<ArticleModel> articleModels) {
+        this.articleModels = articleModels;
     }
+
     public Optional<String> getCountry() {
         return country;
     }
@@ -39,13 +43,12 @@ public class NewsModel {
 
     public void setCategory(String category) {
         this.category = Optional.ofNullable(category);
-        ;
     }
 
     @Override
     public String toString() {
         return "NewsModel{" +
-                "singleArticleModels=" + singleArticleModels +
+                "articleModels=" + articleModels +
                 ", country=" + country +
                 ", category=" + category +
                 '}';

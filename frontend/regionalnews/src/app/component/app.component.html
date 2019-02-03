@@ -1,0 +1,17 @@
+<div *ngFor="let article of news$.articles" style="text-align:center">
+
+  <mat-card class="example-card" style="text-align:center">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{article.title}}</mat-card-title>
+      <mat-card-subtitle>{{article.date}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src={{article.imageUrl}} alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        {{article.description}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+</div>

@@ -1,5 +1,9 @@
 package com.regionalnews.regionalnews.model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -10,15 +14,27 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @XmlRootElement
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SingleArticleModel {
+public class ArticleModel {
 
-    @JsonProperty("author")
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
+    private static final String AUTHOR = "author";
+    private static final String TITLE = "title";
+    private static final String DESCRIPTION = "description";
+    private static final String SOURCE = "source";
+    private static final String DATE = "date";
+    private static final String PUBLISHED_AT = "publishedAt";
+    private static final String ARTICLE_URL = "articleUrl";
+    private static final String URL = "url";
+    private static final String IMAGE_URL = "imageUrl";
+    private static final String URL_TO_IMAGE = "urlToImage";
+
+    @JsonProperty(AUTHOR)
     private String author;
 
-    @JsonProperty("title")
+    @JsonProperty(TITLE)
     private String title;
 
-    @JsonProperty("description")
+    @JsonProperty(DESCRIPTION)
     private String description;
 
     private String date;
@@ -26,7 +42,7 @@ public class SingleArticleModel {
     private String articleUrl;
     private String imageUrl;
 
-    @JsonProperty("source")
+    @JsonProperty(SOURCE)
     private void getSourceName(Map<String, String> brand) {
         this.sourceName = brand.get("name");
     }
@@ -63,39 +79,45 @@ public class SingleArticleModel {
         this.description = description;
     }
 
-    @JsonProperty(value = "date", access = Access.READ_ONLY)
-    public String getDate() {
-        return date;
+    @JsonProperty(value = DATE, access = Access.READ_ONLY)
+    public String getDate() throws ParseException {
+        return formatDate(date);
     }
 
-    @JsonProperty(value = "publishedAt", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = PUBLISHED_AT, access = JsonProperty.Access.WRITE_ONLY)
     public void setDate(String date) {
         this.date = date;
     }
 
-    @JsonProperty(value = "articleUrl", access = Access.READ_ONLY)
+    private String formatDate(String date) throws ParseException {
+        Date dateFormat = new SimpleDateFormat(DATE_FORMAT).parse(date);
+        DateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+        return formatter.format(dateFormat);
+    }
+
+    @JsonProperty(value = ARTICLE_URL, access = Access.READ_ONLY)
     public String getArticleUrl() {
         return articleUrl;
     }
 
-    @JsonProperty(value = "url", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = URL, access = JsonProperty.Access.WRITE_ONLY)
     public void setArticleUrl(String articleUrl) {
         this.articleUrl = articleUrl;
     }
 
-    @JsonProperty(value = "imageUrl", access = Access.READ_ONLY)
+    @JsonProperty(value = IMAGE_URL, access = Access.READ_ONLY)
     public String getImageUrl() {
         return imageUrl;
     }
 
-    @JsonProperty(value = "urlToImage", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = URL_TO_IMAGE, access = JsonProperty.Access.WRITE_ONLY)
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
     @Override
     public String toString() {
-        return "SingleArticleModel{" +
+        return "ArticleModel{" +
                 "author='" + author + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +

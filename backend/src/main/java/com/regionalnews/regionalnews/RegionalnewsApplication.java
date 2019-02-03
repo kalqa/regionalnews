@@ -6,9 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RegionalnewsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RegionalnewsApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(RegionalnewsApplication.class, args);
+    }
 }
-
