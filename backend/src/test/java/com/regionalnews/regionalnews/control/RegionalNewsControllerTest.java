@@ -6,26 +6,23 @@ import java.net.URISyntaxException;
 import com.regionalnews.regionalnews.model.NewsModel;
 import org.apache.http.client.utils.URIBuilder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Spy;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.Assert.assertEquals;
 
 public class RegionalNewsControllerTest {
+    
+    private static final String HTTPS = "https";
+    private static final String NEWSAPI_ORG = "newsapi.org";
+    private static final String V_2_TOP_HEADLINES = "v2/top-headlines";
 
     RegionalNewsService regionalNewsService = new RegionalNewsService();
 
     @Test
     public void isBuildingCorrectUri() throws URISyntaxException, MalformedURLException {
         URIBuilder uri = new URIBuilder()
-                .setPath("https://newsapi.org/v2/top-headlines")
+                .setScheme(HTTPS)
+                .setHost(NEWSAPI_ORG)
+                .setPath(V_2_TOP_HEADLINES)
                 .addParameter("country", "pl")
                 .addParameter("category", "technology");
 
